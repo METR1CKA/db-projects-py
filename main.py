@@ -44,7 +44,7 @@ if __name__ == "__main__":
     table = PubsUtils.getResultadoFinal(first_result, second_result)
 
     # Exportar el resultado final
-    file = PubsUtils.exportToExcel(table, filename="resultado_final")
+    file = PubsUtils.exportToExcel(table, filename="PubsResultEarningsPerAuthors")
 
     print("\nEl archivo se ha guardado en:", file)
     print("\nCon el siguiente contenido:\n")
