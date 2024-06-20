@@ -59,7 +59,15 @@ class PubsUtils:
 
     @staticmethod
     def getResultadoFinal(first_result, second_result):
-        return pd.concat([first_result, second_result], ignore_index=True)
+        final = pd.concat([first_result, second_result], ignore_index=True)
+
+        final.columns = ["AUTOR", "GANANCIA"]
+
+        final = final.sort_values(
+            by=["AUTOR"], ascending=False, key=lambda x: x == "Anonimo"
+        ).reset_index(drop=True)
+
+        return final
 
     @staticmethod
     def exportToExcel(table: pd.DataFrame, filename: str):
