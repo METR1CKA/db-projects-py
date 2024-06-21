@@ -10,7 +10,6 @@ class Query:
         for id in identifiers:
             if id != "*" and not Query.VALID_IDENTIFIER_REGEX.match(id):
                 return False
-
         return True
 
     @staticmethod
@@ -18,5 +17,4 @@ class Query:
         # Validamos los nombres de las columnas y la tabla
         if not Query.validator(columns + [table]):
             raise ValueError("Error en los nombres de las columnas o la tabla")
-
         return f"SELECT {', '.join(columns)} FROM {table}"
