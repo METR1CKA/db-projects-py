@@ -1,6 +1,7 @@
 from config.database import DatabaseConfig
 from database.queries import Query
-from utils.pubs import PubsUtils
+from utils.pubs.author import PubsAuthorUtils
+from utils.dataframe import UtilsDataFrame
 
 
 class Author:
@@ -21,30 +22,30 @@ class Author:
             raise Exception("Error al construir la consulta: ", Err)
 
         # Obtener los datos de las tablas sales, titles y titleauthor en dataframes
-        sales = PubsUtils.getDataFrame(query=query_sales)
-        titles = PubsUtils.getDataFrame(query=query_titles)
-        titleauthor = PubsUtils.getDataFrame(query=query_titleauthor)
+        sales = UtilsDataFrame.getDataFrame(query=query_sales)
+        titles = UtilsDataFrame.getDataFrame(query=query_titles)
+        titleauthor = UtilsDataFrame.getDataFrame(query=query_titleauthor)
 
         # Obtener las ganancias de los libros con sus autores
-        ganancias = PubsUtils.getGanancias(sales, titles, titleauthor)
+        ganancias = PubsAuthorUtils.getGanancias(sales, titles, titleauthor)
 
         # Obtener las ganancias de los libros sin autores
-        regalias = PubsUtils.getRegalias(titles, titleauthor)
+        regalias = PubsAuthorUtils.getRegalias(titles, titleauthor)
 
         # Obtener las ganancias de los libros anonimos
-        anonimo = PubsUtils.getAnonimo(sales, regalias)
+        anonimo = PubsAuthorUtils.getAnonimo(sales, regalias)
 
         # Obtener el resultado de las ganancias por autor
-        first_result = PubsUtils.getResultadoGanancias(ganancias)
+        first_result = PubsAuthorUtils.getResultadoGanancias(ganancias)
 
         # Obtener el resultado de las ganancias de los libros anonimos
-        second_result = PubsUtils.getResultadoAnonimoRegalias(anonimo)
+        second_result = PubsAuthorUtils.getResultadoAnonimoRegalias(anonimo)
 
         # Obtener el resultado final
-        table = PubsUtils.getResultadoFinal(first_result, second_result)
+        table = PubsAuthorUtils.getResultadoFinal(first_result, second_result)
 
         # Exportar el resultado final
-        file = PubsUtils.exportToExcel(table, filename="PubsResultAuthorProfits")
+        file = PubsAuthorUtils.exportToExcel(table, filename="PubsResultAuthorProfits")
 
         print("\nEl archivo se ha guardado en:", file)
         print("\nCon el siguiente contenido:\n")

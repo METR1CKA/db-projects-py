@@ -2,14 +2,7 @@ from config.database import DatabaseConfig
 import pandas as pd, os
 
 
-class PubsUtils:
-    @staticmethod
-    def getDataFrame(query: str):
-        connection = DatabaseConfig.getEngine()
-        data_frame = pd.read_sql(query, connection)
-        connection.dispose()
-        return data_frame
-
+class PubsAuthorUtils:
     @staticmethod
     def getGanancias(sales, titles, titleauthor):
         ganancias = sales.merge(titles, on="title_id").merge(titleauthor, on="title_id")
