@@ -1,5 +1,4 @@
-from config.database import DatabaseConfig
-import pandas as pd, os
+import pandas as pd
 
 
 class PubsAuthorUtils:
@@ -48,14 +47,3 @@ class PubsAuthorUtils:
             by=["AUTOR"], ascending=False, key=lambda x: x == "Anonimo"
         ).reset_index(drop=True)
         return final
-
-    @staticmethod
-    def exportToExcel(table: pd.DataFrame, filename: str):
-        docs = "docs"
-        files = os.listdir()
-        if docs not in files:
-            os.mkdir(docs)
-        dirname = os.getcwd()
-        path = os.path.join(dirname, docs, f"{filename}.xlsx")
-        table.to_excel(path, index=False)
-        return os.path.join("./", docs, f"{filename}.xlsx")

@@ -1,4 +1,5 @@
 from interfaces.pubs.author import Author
+from interfaces.northwind.client import Client
 
 
 class Menu:
@@ -27,6 +28,8 @@ class Menu:
         try:
             if choice == 1:
                 Author.pubsAuthorEarnings()
+            if choice == 2:
+                Client.northwindClientEarnings()
             sys.exit(0)
         except Exception as err:
             print(f"Err: {err}")

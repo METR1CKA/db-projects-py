@@ -45,7 +45,9 @@ class Author:
         table = PubsAuthorUtils.getResultadoFinal(first_result, second_result)
 
         # Exportar el resultado final
-        file = PubsAuthorUtils.exportToExcel(table, filename="PubsResultAuthorProfits")
+        file = UtilsDataFrame.exportToExcel(
+            table, folder="pubs", filename="AuthorProfits"
+        )
 
         print("\nEl archivo se ha guardado en:", file)
         print("\nCon el siguiente contenido:\n")
