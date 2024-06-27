@@ -28,8 +28,8 @@ def main():
     os.system("clear")
 
     Menu.display(
-        {key: value["name"] for key, value in db_options.items()},
-        "Seleccione una base de datos",
+        options={key: value["name"] for key, value in db_options.items()},
+        title="Seleccione una base de datos",
     )
 
     while True:
@@ -45,16 +45,15 @@ def main():
 
     options = choice["options"]
 
-    Menu.display(options, "Seleccione una query a ejecutar")
+    Menu.display(options, title="Seleccione una query a ejecutar")
 
     while True:
         choice_query = Menu.getChoice(options)
-        if options[choice_query] == "Salir":
+        _choice = options[choice_query]
+        if _choice == "Salir":
             print("\nSaliendo del programa...\n")
             break
-        Menu.executeChoice(
-            db_name=choice["name"], option=choice["options"][choice_query], sys=sys
-        )
+        Menu.executeChoice(db_name=choice["name"], option=_choice, sys=sys)
 
 
 if __name__ == "__main__":
