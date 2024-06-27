@@ -34,13 +34,10 @@ def main():
 
     while True:
         choice_db = Menu.getChoice(db_options)
-
         choice = db_options[choice_db]
-
         if choice["name"] == "Salir":
             print("\nSaliendo del programa...\n")
             sys.exit(0)
-
         DatabaseConfig.setDatabaseName(choice["name"])
         break
 
@@ -52,11 +49,9 @@ def main():
 
     while True:
         choice_query = Menu.getChoice(options)
-
         if options[choice_query] == "Salir":
             print("\nSaliendo del programa...\n")
             break
-
         Menu.executeChoice(
             db_name=choice["name"], option=choice["options"][choice_query], sys=sys
         )
