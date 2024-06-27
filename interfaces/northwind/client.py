@@ -62,9 +62,11 @@ class Client:
         # Formatear los resultados
         table = NorthwindClientUtils.getResultPivot(result)
 
+        array_folders = ["northwind", "client"]
+
         # Exportar el resultado final
         file_result = UtilsDataFrame.exportToExcel(
-            table, folder="northwind", filename="ClientEarningsResult"
+            table, folders=array_folders, filename="ClientEarningsResult"
         )
 
         print("\nEl archivo se ha guardado en:", file_result)
@@ -73,7 +75,7 @@ class Client:
 
         # Exportar la tabla final
         file_table = UtilsDataFrame.exportToExcel(
-            result, folder="northwind", filename="ClientEarningsTable"
+            result, folders=array_folders, filename="ClientEarningsTable"
         )
 
         print("\nEl archivo se ha guardado en:", file_table)

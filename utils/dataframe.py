@@ -11,12 +11,12 @@ class UtilsDataFrame:
         return data_frame
 
     @staticmethod
-    def exportToExcel(table: pd.DataFrame, folder: str, filename: str):
+    def exportToExcel(table: pd.DataFrame, folders: list, filename: str):
         docs = "docs"
         dirname = os.getcwd()
-        full_folder_path = os.path.join(dirname, docs, folder)
+        full_folder_path = os.path.join(dirname, docs, *folders)
         if not os.path.exists(full_folder_path):
             os.makedirs(full_folder_path)
         path = os.path.join(full_folder_path, f"{filename}.xlsx")
         table.to_excel(path, index=False)
-        return os.path.join("./", docs, folder, f"{filename}.xlsx")
+        return os.path.join("./", docs, *folders, f"{filename}.xlsx")

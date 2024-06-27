@@ -46,7 +46,7 @@ class Author:
 
         # Exportar el resultado final
         file = UtilsDataFrame.exportToExcel(
-            table, folder="pubs", filename="AuthorProfits"
+            table, folders=["pubs"], filename="AuthorProfits"
         )
 
         print("\nEl archivo se ha guardado en:", file)
