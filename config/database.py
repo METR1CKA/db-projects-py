@@ -7,6 +7,10 @@ class DatabaseConfig:
     _engine = None
 
     @staticmethod
+    def setDatabaseName(database):
+        os.environ["DB_NAME"] = database
+
+    @staticmethod
     def getEngine():
         # Si ya existe una conexión, retornarla
         if DatabaseConfig._engine is not None:

@@ -3,9 +3,18 @@ from interfaces.northwind.client import Client
 
 
 class Menu:
+    choice = {
+        "Pubs": {
+            "Ganancias por autor": Author.pubsAuthorEarnings,
+        },
+        "Northwind": {
+            "Clientes con mas ganancia por año y región": Client.northwindClientEarnings,
+        },
+    }
+
     @staticmethod
-    def display(options):
-        print("------ Menu ------")
+    def display(options, title):
+        print(f"------ {title} ------")
         for key, value in options.items():
             print(f"{key}. {value}")
 
@@ -24,12 +33,9 @@ class Menu:
         return choice
 
     @staticmethod
-    def executeChoice(choice, sys):
+    def executeChoice(db_name, option, sys):
         try:
-            if choice == 1:
-                Author.pubsAuthorEarnings()
-            if choice == 2:
-                Client.northwindClientEarnings()
+            Menu.choice[db_name][option]()
             sys.exit(0)
         except Exception as err:
             print(f"Err: {err}")
