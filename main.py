@@ -15,7 +15,8 @@ db_options = {
         "name": "Northwind",
         "options": {
             1: "Clientes con mas ganancia por año y región",
-            2: "Salir",
+            2: "Ganancias por región",
+            3: "Salir",
         },
     },
     3: {

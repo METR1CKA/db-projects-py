@@ -1,5 +1,6 @@
 from interfaces.pubs.author import Author
 from interfaces.northwind.client import Client
+from interfaces.northwind.region import Region
 
 
 class Menu:
@@ -9,6 +10,7 @@ class Menu:
         },
         "Northwind": {
             "Clientes con mas ganancia por año y región": Client.northwindClientEarnings,
+            "Ganancias por región": Region.northwindRegionEarnings,
         },
     }
 
