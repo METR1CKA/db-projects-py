@@ -1,5 +1,6 @@
-from interfaces.menu import Menu
 from config.database import DatabaseConfig
+from interfaces.menu import Menu
+from config.env import Env
 import sys, os
 
 
@@ -27,6 +28,12 @@ db_options = {
 
 
 def main():
+    try:
+        Env.loadEnv()
+    except Exception as Err:
+        print("No se encontró el archivo .env: ", Err)
+        sys.exit(1)
+
     os.system("clear")
 
     Menu.display(
@@ -43,6 +50,12 @@ def main():
         DatabaseConfig.setDatabaseName(choice["name"])
         break
 
+    try:
+        DatabaseConfig.checkConnection()
+    except Exception as Err:
+        print("Error al conectar con la base de datos: ", Err)
+        sys.exit(1)
+
     os.system("clear")
 
     options = choice["options"]
@@ -51,11 +64,11 @@ def main():
 
     while True:
         choice_query = Menu.getChoice(options)
-        _choice = options[choice_query]
-        if _choice == "Salir":
+        choice_option = options[choice_query]
+        if choice_option == "Salir":
             print("\nSaliendo del programa...\n")
             break
-        Menu.executeChoice(db_name=choice["name"], option=_choice, sys=sys)
+        Menu.executeChoice(db_name=choice["name"], option=choice_option, sys=sys)
 
 
 if __name__ == "__main__":

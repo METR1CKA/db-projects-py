@@ -1,5 +1,6 @@
-from sqlalchemy import create_engine
 from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy import create_engine
+from config.env import Env
 import os
 
 
@@ -8,23 +9,13 @@ class DatabaseConfig:
 
     @staticmethod
     def setDatabaseName(database):
-        os.environ["DB_NAME"] = database
+        Env.setEnv("DB_NAME", database)
 
     @staticmethod
     def getEngine():
         # Si ya existe una conexión, retornarla
         if DatabaseConfig._engine is not None:
             return DatabaseConfig._engine
-        # Cargar las variables de entorno
-        file = ".env"
-        files = os.listdir()
-        if file not in files:
-            raise ValueError("No se encontró el archivo .env")
-        with open(file) as file:
-            for line in file:
-                if line.strip() and not line.startswith("#"):
-                    key, value = line.strip().split("=", 1)
-                    os.environ[key] = value
         # Obtener los datos de conexión
         user = os.environ.get("DB_USER")
         password = os.environ.get("DB_PASSWORD")
@@ -45,6 +36,6 @@ class DatabaseConfig:
             engine = DatabaseConfig.getEngine()
             connection = engine.connect()
             connection.close()
-            return None
+            return
         except SQLAlchemyError as Err:
             return Err

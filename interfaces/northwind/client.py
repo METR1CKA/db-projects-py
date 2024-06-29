@@ -1,4 +1,3 @@
-from config.database import DatabaseConfig
 from database.queries import Query
 from utils.northwind.client import NorthwindClientUtils
 from utils.dataframe import UtilsDataFrame
@@ -7,12 +6,6 @@ from utils.dataframe import UtilsDataFrame
 class Client:
     @staticmethod
     def northwindClientEarnings():
-        # Checar la conexión a la base de datos
-        connection = DatabaseConfig.checkConnection()
-
-        if connection is not None:
-            raise Exception("Error en la conexión a la base de datos: ", connection)
-
         # Construir las consultas
         try:
             customers_query = Query.select(columns=["*"], table="Customers")

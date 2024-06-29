@@ -1,4 +1,3 @@
-from config.database import DatabaseConfig
 from database.queries import Query
 from utils.dataframe import UtilsDataFrame
 from utils.northwind.exam import NorthwindExamUtils
@@ -7,12 +6,6 @@ from utils.northwind.exam import NorthwindExamUtils
 class Exam:
     @staticmethod
     def northwindExam():
-        # Checar la conexión a la base de datos
-        connection = DatabaseConfig.checkConnection()
-
-        if connection is not None:
-            raise Exception("Error en la conexión a la base de datos: ", connection)
-
         # Construir las consultas
         try:
             products_query = Query.select(columns=["*"], table="Products")

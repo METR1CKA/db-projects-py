@@ -1,4 +1,3 @@
-from config.database import DatabaseConfig
 from database.queries import Query
 from utils.pubs.author import PubsAuthorUtils
 from utils.dataframe import UtilsDataFrame
@@ -7,12 +6,6 @@ from utils.dataframe import UtilsDataFrame
 class Author:
     @staticmethod
     def pubsAuthorEarnings():
-        # Checar la conexión a la base de datos
-        connection = DatabaseConfig.checkConnection()
-
-        if connection is not None:
-            raise Exception("Error en la conexión a la base de datos: ", connection)
-
         # Construir las consultas y checar si hay errores
         try:
             query_sales = Query.select(columns=["*"], table="sales")
