@@ -1,20 +1,17 @@
-from database.queries import Query
-from utils.dataframe import UtilsDataFrame
 from utils.northwind.exam import NorthwindExamUtils
+from utils.dataframe import UtilsDataFrame
+from database.queries import Query
 
 
 class Exam:
     @staticmethod
     def northwindExam():
         # Construir las consultas
-        try:
-            products_query = Query.select(columns=["*"], table="Products")
-            order_details_query = Query.select(columns=["*"], table="`Order Details`")
-            orders_query = Query.select(columns=["*"], table="Orders")
-            categories_query = Query.select(columns=["*"], table="Categories")
-            customers_query = Query.select(columns=["*"], table="Customers")
-        except Exception as Err:
-            raise Exception("Error al construir la consulta: ", Err)
+        products_query = Query.select(columns=["*"], table="Products")
+        order_details_query = Query.select(columns=["*"], table="`Order Details`")
+        orders_query = Query.select(columns=["*"], table="Orders")
+        categories_query = Query.select(columns=["*"], table="Categories")
+        customers_query = Query.select(columns=["*"], table="Customers")
 
         # Obtener los dataframes de las consultas
         products = UtilsDataFrame.getDataFrame(query=products_query)

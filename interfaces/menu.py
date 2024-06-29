@@ -1,7 +1,7 @@
-from interfaces.pubs.author import Author
 from interfaces.northwind.client import Client
 from interfaces.northwind.region import Region
 from interfaces.northwind.exam import Exam
+from interfaces.pubs.author import Author
 
 
 class Menu:

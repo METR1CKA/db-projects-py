@@ -1,22 +1,19 @@
-from database.queries import Query
 from utils.northwind.region import NorthwindRegionUtils
 from utils.dataframe import UtilsDataFrame
+from database.queries import Query
 
 
 class Region:
     @staticmethod
     def northwindRegionEarnings():
         # Construir las consultas
-        try:
-            region_query = Query.select(columns=["*"], table="Region")
-            employee_territories_query = Query.select(
-                columns=["*"], table="EmployeeTerritories"
-            )
-            territories_query = Query.select(columns=["*"], table="Territories")
-            orders_query = Query.select(columns=["*"], table="Orders")
-            order_details_query = Query.select(columns=["*"], table="`Order Details`")
-        except Exception as Err:
-            raise Exception("Error al construir la consulta: ", Err)
+        region_query = Query.select(columns=["*"], table="Region")
+        employee_territories_query = Query.select(
+            columns=["*"], table="EmployeeTerritories"
+        )
+        territories_query = Query.select(columns=["*"], table="Territories")
+        orders_query = Query.select(columns=["*"], table="Orders")
+        order_details_query = Query.select(columns=["*"], table="`Order Details`")
 
         # Obtener los dataframes de las consultas
         region = UtilsDataFrame.getDataFrame(query=region_query)
@@ -40,11 +37,9 @@ class Region:
             regionEarnings, UtilsDataFrame.formatEarnings
         )
 
-        array_folders = ["northwind", "region"]
-
         # Exportar el resultado final
         file_result = UtilsDataFrame.exportToExcel(
-            result, folders=array_folders, filename="RegionEarningsResult"
+            result, folders=["northwind", "region"], filename="RegionEarningsResult"
         )
 
         print("\nEl archivo se ha guardado en:", file_result)

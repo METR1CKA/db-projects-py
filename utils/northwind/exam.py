@@ -77,28 +77,31 @@ class NorthwindExamUtils:
         ]
         # Formatear las columnas Producto, ContactName y Ganancias para cada año
         result[f"{ultimo}"] = (
-            "Producto: "
+            "(Producto: "
             + result[f"{ultimo}_ProductName"].astype(str)
-            + " - Cliente: "
+            + ") - (Cliente: "
             + result[f"{ultimo}_ContactName"].astype(str)
-            + " - Ganancias: "
+            + ") - (Ganancias: "
             + result[f"{ultimo}_Ganancias"].apply(format).astype(str)
+            + ")"
         )
         result[f"{penultimo}"] = (
-            "Producto: "
+            "(Producto: "
             + result[f"{penultimo}_ProductName"].astype(str)
-            + " - Cliente: "
+            + ") - (Cliente: "
             + result[f"{penultimo}_ContactName"].astype(str)
-            + " - Ganancias: "
+            + ") - (Ganancias: "
             + result[f"{penultimo}_Ganancias"].apply(format).astype(str)
+            + ")"
         )
         result[f"{antepenultimo}"] = (
-            "Producto: "
+            "(Producto: "
             + result[f"{antepenultimo}_ProductName"].astype(str)
-            + " - Cliente: "
+            + ") - (Cliente: "
             + result[f"{antepenultimo}_ContactName"].astype(str)
-            + " - Ganancias: "
+            + ") - (Ganancias: "
             + result[f"{antepenultimo}_Ganancias"].apply(format).astype(str)
+            + ")"
         )
         # Seleccionar solo las columnas necesarias
         result = result[

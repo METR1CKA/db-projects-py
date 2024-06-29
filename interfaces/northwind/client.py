@@ -1,24 +1,21 @@
-from database.queries import Query
 from utils.northwind.client import NorthwindClientUtils
 from utils.dataframe import UtilsDataFrame
+from database.queries import Query
 
 
 class Client:
     @staticmethod
     def northwindClientEarnings():
         # Construir las consultas
-        try:
-            customers_query = Query.select(columns=["*"], table="Customers")
-            orders_query = Query.select(columns=["*"], table="Orders")
-            order_details_query = Query.select(columns=["*"], table="`Order Details`")
-            employees_query = Query.select(columns=["*"], table="Employees")
-            employee_territories_query = Query.select(
-                columns=["*"], table="EmployeeTerritories"
-            )
-            territories_query = Query.select(columns=["*"], table="Territories")
-            region_query = Query.select(columns=["*"], table="Region")
-        except Exception as Err:
-            raise Exception("Error al construir la consulta: ", Err)
+        customers_query = Query.select(columns=["*"], table="Customers")
+        orders_query = Query.select(columns=["*"], table="Orders")
+        order_details_query = Query.select(columns=["*"], table="`Order Details`")
+        employees_query = Query.select(columns=["*"], table="Employees")
+        employee_territories_query = Query.select(
+            columns=["*"], table="EmployeeTerritories"
+        )
+        territories_query = Query.select(columns=["*"], table="Territories")
+        region_query = Query.select(columns=["*"], table="Region")
 
         # Empleados, Regiones y Territorios
         employees = UtilsDataFrame.getDataFrame(query=employees_query)

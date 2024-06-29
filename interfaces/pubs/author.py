@@ -1,18 +1,15 @@
-from database.queries import Query
 from utils.pubs.author import PubsAuthorUtils
 from utils.dataframe import UtilsDataFrame
+from database.queries import Query
 
 
 class Author:
     @staticmethod
     def pubsAuthorEarnings():
         # Construir las consultas y checar si hay errores
-        try:
-            query_sales = Query.select(columns=["*"], table="sales")
-            query_titles = Query.select(columns=["*"], table="titles")
-            query_titleauthor = Query.select(columns=["*"], table="titleauthor")
-        except Exception as Err:
-            raise Exception("Error al construir la consulta: ", Err)
+        query_sales = Query.select(columns=["*"], table="sales")
+        query_titles = Query.select(columns=["*"], table="titles")
+        query_titleauthor = Query.select(columns=["*"], table="titleauthor")
 
         # Obtener los datos de las tablas sales, titles y titleauthor en dataframes
         sales = UtilsDataFrame.getDataFrame(query=query_sales)
