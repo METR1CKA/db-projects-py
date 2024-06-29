@@ -3,7 +3,12 @@ import pandas as pd
 
 class NorthwindClientUtils:
     @staticmethod
-    def getEmployeeRegion(employees, employeeTerritories, territories, region):
+    def getEmployeeRegion(
+        employees: pd.DataFrame,
+        employeeTerritories: pd.DataFrame,
+        territories: pd.DataFrame,
+        region: pd.DataFrame,
+    ):
         regions = (
             employees.merge(employeeTerritories, on="EmployeeID")
             .merge(territories, on="TerritoryID")
@@ -14,7 +19,12 @@ class NorthwindClientUtils:
         return employeeRegion
 
     @staticmethod
-    def getCustomerPurchase(customers, orders, orderDetails, employees):
+    def getCustomerPurchase(
+        customers: pd.DataFrame,
+        orders: pd.DataFrame,
+        orderDetails: pd.DataFrame,
+        employees: pd.DataFrame,
+    ):
         customerPurchase = (
             customers.merge(orders, on="CustomerID")
             .merge(orderDetails, on="OrderID")
@@ -23,7 +33,7 @@ class NorthwindClientUtils:
         return customerPurchase
 
     @staticmethod
-    def getTotalPurchase(customerPurchase):
+    def getTotalPurchase(customerPurchase: pd.DataFrame):
         customerPurchase["OrderYear"] = pd.to_datetime(
             customerPurchase["OrderDate"]
         ).dt.year
@@ -43,7 +53,7 @@ class NorthwindClientUtils:
         return totalPurchase
 
     @staticmethod
-    def getMaxTotalPurchase(totalPurchase):
+    def getMaxTotalPurchase(totalPurchase: pd.DataFrame):
         maxPurchases = (
             totalPurchase.groupby(["OrderYear", "RegionDescription"], as_index=False)
             .agg({"TotalPurchase": "max"})
@@ -52,7 +62,7 @@ class NorthwindClientUtils:
         return maxPurchases
 
     @staticmethod
-    def getResult(totalPurchase, maxPurchases):
+    def getResult(totalPurchase: pd.DataFrame, maxPurchases: pd.DataFrame):
         result = totalPurchase.merge(
             maxPurchases, on=["OrderYear", "RegionDescription"]
         )
@@ -71,7 +81,7 @@ class NorthwindClientUtils:
         return result
 
     @staticmethod
-    def getResultPivot(result):
+    def getResultPivot(result: pd.DataFrame):
         resultPivot = result.pivot_table(
             index="OrderYear",
             columns="RegionDescription",

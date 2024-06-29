@@ -1,7 +1,14 @@
+import pandas as pd
+
+
 class NorthwindRegionUtils:
     @staticmethod
     def getRegionEarnings(
-        region, employeeTerritories, territories, orders, orderDetails
+        region: pd.DataFrame,
+        employeeTerritories: pd.DataFrame,
+        territories: pd.DataFrame,
+        orders: pd.DataFrame,
+        orderDetails: pd.DataFrame,
     ):
         regionEarnings = (
             region.merge(territories, on="RegionID")
@@ -22,7 +29,7 @@ class NorthwindRegionUtils:
         return f"${value:,.2f}"
 
     @staticmethod
-    def getResult(regionEarnings):
+    def getResult(regionEarnings: pd.DataFrame):
         regionEarnings["Ganancias"] = regionEarnings["Ganancias"].apply(
             NorthwindRegionUtils.formatEarnings
         )
