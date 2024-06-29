@@ -25,14 +25,8 @@ class NorthwindRegionUtils:
         return regionEarnings
 
     @staticmethod
-    def formatEarnings(value):
-        return f"${value:,.2f}"
-
-    @staticmethod
-    def getResult(regionEarnings: pd.DataFrame):
-        regionEarnings["Ganancias"] = regionEarnings["Ganancias"].apply(
-            NorthwindRegionUtils.formatEarnings
-        )
+    def getResult(regionEarnings: pd.DataFrame, format):
+        regionEarnings["Ganancias"] = regionEarnings["Ganancias"].apply(format)
         result = regionEarnings.rename(
             columns={"RegionDescription": "REGION", "Ganancias": "GANANCIAS"}
         )

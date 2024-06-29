@@ -43,7 +43,9 @@ class Region:
             orderDetails,
         )
 
-        result = NorthwindRegionUtils.getResult(regionEarnings)
+        result = NorthwindRegionUtils.getResult(
+            regionEarnings, UtilsDataFrame.formatEarnings
+        )
 
         array_folders = ["northwind", "region"]
 

@@ -1,6 +1,7 @@
 from interfaces.pubs.author import Author
 from interfaces.northwind.client import Client
 from interfaces.northwind.region import Region
+from interfaces.northwind.exam import Exam
 
 
 class Menu:
@@ -11,6 +12,7 @@ class Menu:
         "Northwind": {
             "Clientes con mas ganancia por año y región": Client.northwindClientEarnings,
             "Ganancias por región": Region.northwindRegionEarnings,
+            "Ganancias por categoría, año, cliente": Exam.northwindExam,
         },
     }
 
@@ -39,6 +41,6 @@ class Menu:
         try:
             Menu.choice[db_name][option]()
             sys.exit(0)
-        except Exception as err:
+        except ValueError as err:
             print(f"Err: {err}")
             sys.exit(1)

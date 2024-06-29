@@ -11,6 +11,10 @@ class UtilsDataFrame:
         return data_frame
 
     @staticmethod
+    def formatEarnings(value):
+        return f"${value:,.2f}"
+
+    @staticmethod
     def exportToExcel(table: pd.DataFrame, folders: list, filename: str):
         docs = "docs"
         dirname = os.getcwd()
