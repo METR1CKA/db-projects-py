@@ -18,3 +18,7 @@ class Env:
     @staticmethod
     def setEnv(key, value):
         os.environ[key] = value
+
+    @staticmethod
+    def getEnv(key):
+        return os.environ.get(key)

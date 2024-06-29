@@ -30,8 +30,8 @@ db_options = {
 def main():
     try:
         Env.loadEnv()
-    except Exception as Err:
-        print("No se encontró el archivo .env: ", Err)
+    except:
+        print("No se encontró el archivo .env")
         sys.exit(1)
 
     os.system("clear")
@@ -68,7 +68,7 @@ def main():
         if choice_option == "Salir":
             print("\nSaliendo del programa...\n")
             break
-        Menu.executeChoice(db_name=choice["name"], option=choice_option, sys=sys)
+        Menu.executeChoice(db_name=Env.getEnv("DB_NAME"), option=choice_option, sys=sys)
 
 
 if __name__ == "__main__":

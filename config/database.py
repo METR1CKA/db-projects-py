@@ -1,7 +1,6 @@
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import create_engine
 from config.env import Env
-import os
 
 
 class DatabaseConfig:
@@ -17,11 +16,11 @@ class DatabaseConfig:
         if DatabaseConfig._engine is not None:
             return DatabaseConfig._engine
         # Obtener los datos de conexión
-        user = os.environ.get("DB_USER")
-        password = os.environ.get("DB_PASSWORD")
-        host = os.environ.get("DB_HOST")
-        port = os.environ.get("DB_PORT")
-        database = os.environ.get("DB_NAME")
+        user = Env.getEnv("DB_USER")
+        password = Env.getEnv("DB_PASSWORD")
+        host = Env.getEnv("DB_HOST")
+        port = Env.getEnv("DB_PORT")
+        database = Env.getEnv("DB_NAME")
         # Crear la cadena de conexión
         connection_string = (
             f"mysql+mysqlconnector://{user}:{password}@{host}:{port}/{database}"
