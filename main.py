@@ -30,8 +30,8 @@ db_options = {
 def main():
     try:
         Env.loadEnv()
-    except:
-        print("No se encontró el archivo .env")
+    except Exception as Err:
+        print(f"\n[-] {Err}\n")
         sys.exit(1)
 
     os.system("clear")
@@ -53,7 +53,7 @@ def main():
     try:
         DatabaseConfig.checkConnection()
     except Exception as Err:
-        print("Error al conectar con la base de datos: ", Err)
+        print("\n[-] Error al conectar con la base de datos:\n", Err)
         sys.exit(1)
 
     os.system("clear")
