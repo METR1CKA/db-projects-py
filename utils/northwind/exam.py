@@ -107,4 +107,5 @@ class NorthwindExamUtils:
         result = result[
             ["CategoryName", f"{ultimo}", f"{penultimo}", f"{antepenultimo}"]
         ]
+        result.columns = ["Categoria", "Ultimo", "Penultimo", "Antepenultimo"]
         return result
