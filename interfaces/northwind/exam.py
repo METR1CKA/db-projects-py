@@ -38,4 +38,4 @@ class Exam:
 
         print("\nEl archivo se ha guardado en:", file_result)
         print("\nCon el siguiente contenido:\n")
-        print(mainQuery.head(4))
+        print(mainQuery)
